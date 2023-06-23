@@ -5,12 +5,11 @@ const suggestions = {
   html: [
     "<!DOCTYPE html>",
     "<html>",
-    "  <head>",
-    "    <title></title>",
-    "  </head>",
-    "  <body>",
-    "    ",
-    "  </body>",
+    "<head>",
+    "<title></title>",
+    "</head>",
+    "<body>",
+    "</body>",
     "</html>"
   ],
   css: [
@@ -42,35 +41,52 @@ const suggestions = {
 };
 
 // Selecionar elementos
-const languageSelect = document.getElementById("language-select");
 const editor = document.getElementById("editor");
+const suggestionsContainer = document.getElementById("suggestions-container");
 
-// Adicionar evento de alteração do seletor de linguagem
-languageSelect.addEventListener("change", function() {
+// Adicionar evento de digitação no editor de código
+editor.addEventListener("input", function() {
+  const text = editor.innerText;
+  const languageSelect = document.getElementById("language-select");
   const selectedLanguage = languageSelect.value;
   const selectedSuggestions = suggestions[selectedLanguage];
 
   if (selectedSuggestions) {
-    const datalist = generateDatalist(selectedSuggestions);
-    editor.setAttribute("list", datalist.id);
-    editor.parentNode.appendChild(datalist);
+    const filteredSuggestions = getSuggestionsStartingWith(selectedSuggestions, text);
+    showSuggestions(filteredSuggestions);
   } else {
-    editor.removeAttribute("list");
+    clearSuggestions();
   }
 });
 
-// Gerar o elemento datalist com as sugestões de autocompletar
-function generateDatalist(suggestions) {
-  const datalist = document.createElement("datalist");
+// Obter sugestões que começam com o texto digitado
+function getSuggestionsStartingWith(suggestions, text) {
+  return suggestions.filter(suggestion => suggestion.startsWith(text));
+}
 
-  const id = "suggestions-" + Math.random().toString(36).substr(2, 9);
-  datalist.id = id;
+// Mostrar sugestões na tela
+function showSuggestions(suggestions) {
+  suggestionsContainer.innerHTML = "";
 
   for (let suggestion of suggestions) {
-    const option = document.createElement("option");
-    option.value = suggestion;
-    datalist.appendChild(option);
-  }
+    const suggestionItem = document.createElement("div");
+    suggestionItem.classList.add("suggestion-item");
+    suggestionItem.innerText = suggestion;
 
-  return datalist;
+    suggestionsContainer.appendChild(suggestionItem);
+  }
 }
+
+// Limpar as sugestões
+function clearSuggestions() {
+  suggestionsContainer.innerHTML = "";
+}
+
+// Adicionar evento de clique às sugestões
+suggestionsContainer.addEventListener("click", function(event) {
+  const clickedSuggestion = event.target.innerText;
+  const currentText = editor.innerText;
+  const newText = currentText.replace(/\s+$/, "") + clickedSuggestion;
+  editor.innerText = newText;
+  clearSuggestions();
+});
