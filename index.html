@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Código</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <script src="scripts/dowloader.js" defer></script>
+  <script src="scripts/autocompletar.js" defer></script>
+</head>
+<body>
+   <div class="editor-wrapper">
+    <div class="toolbar">
+      <label for="language-select">Selecionar linguagem:</label>
+      <select id="language-select">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JavaScript</option>
+      </select>
+    </div>
+    <button id="download-button">Baixar</button>
+    <div id="editor" contenteditable="true"></div>
+    <div id="suggestions-container"></div>
+  </div>
+</body>
+</html>
