@@ -23,15 +23,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Estilos do seletor de linguagem */
-#language-select {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
 /* Estilos do botão de download */
 #download-button {
   padding: 10px 20px;
@@ -151,14 +142,8 @@ body {
 }
 
 /* Estilos responsivos */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .editor-wrapper {
-    margin: 20px auto;
-    padding: 10px;
-  }
-  
-  #editor {
-    min-height: 200px;
-    font-size: 12px;
+    height: 80vh;
   }
 }
