@@ -1,1 +1,26 @@
-function deleteCurrentWord() { const editor = document.getElementById("editor"); const editorContent = editor.textContent; const selection = window.getSelection(); const range = selection.getRangeAt(0); // Verificar se o cursor está no meio de uma palavra if (range.startOffset > 0 && !/\s/.test(editorContent[range.startOffset - 1])) { // Encontrar o início da palavra let start = range.startOffset - 1; while (start > 0 && !/\s/.test(editorContent[start - 1])) { start--; } // Encontrar o fim da palavra let end = range.startOffset; while (end < editorContent.length && !/\s/.test(editorContent[end])) { end++; } // Remover a palavra do texto const beforeText = editorContent.slice(0, start); const afterText = editorContent.slice(end); editor.textContent = beforeText + afterText; // Posicionar o cursor no local correto após a remoção da palavra const newRange = document.createRange(); const newSelection = window.getSelection(); newRange.setStart(editor.firstChild, start); newRange.collapse(true); newSelection.removeAllRanges(); newSelection.addRange(newRange); } }
+function deleteCurrentWord() { 
+  // Verificar se o cursor está no meio de uma palavra 
+  if (range.startOffset > 0 && !/\s/.test(editorContent[range.startOffset - 1])) {
+    // Encontrar o início da palavra 
+    let start = range.startOffset - 1; 
+    while (start > 0 && !/\s/.test(editorContent[start - 1])) { 
+      start--; 
+    } 
+    // Encontrar o fim da palavra 
+    let end = range.startOffset; 
+    while (end < editorContent.length && !/\s/.test(editorContent[end])) { 
+      end++; 
+    } 
+    // Remover a palavra do texto 
+    const beforeText = editorContent.slice(0, start); 
+    const afterText = editorContent.slice(end); 
+    editor.textContent = beforeText + afterText; 
+    // Posicionar o cursor no local correto após a remoção da palavra 
+    const newRange = document.createRange(); 
+    const newSelection = window.getSelection(); 
+    newRange.setStart(editor.firstChild, start); 
+    newRange.collapse(true); 
+    newSelection.removeAllRanges(); 
+    newSelection.addRange(newRange);
+  } 
+} 
