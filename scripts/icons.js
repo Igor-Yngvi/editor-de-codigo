@@ -12,6 +12,6 @@
       
       // Atualize o ícone com base na linguagem selecionada
       if (selectedLanguage in iconPaths) {
-        icon.src = iconPaths[selectedLanguage];
+        icon.href = iconPaths[selectedLanguage];
       }
     }
