@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <title>Editor de Código</title>
   <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/filename-forms.css">
   <link id="icon-link" rel="icon" href="icons/vscw.png" type="image/png" size="16x16">
-  <script src="scripts/icons.js" defer></script>
   <script src="scripts/dowloader.js" defer></script>
   <script src="scripts/autocompletar.js" defer></script>
   <script src="scripts/upload.js" defer></script>
 </head>
 <body>
+ <!--Formulario para adiquirir o nome do arquivo-->
+    <div id="filename-form" no-scroll">
+      <div id="container-form">
+        <form id="form">
+          <label for="filename-input">Digite O nome do arquivo:</label>
+          <input type="text" id="filename-input">
+          <button type="submit" id="submit-button">Nomear</button>
+         </form>
+	</div>
+    </div>
 <div class="editor-wrapper">
   <div class="toolbar">
     <label for="language-select">Selecionar linguagem:</label>
