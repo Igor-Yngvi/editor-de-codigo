@@ -4,23 +4,24 @@
   <meta charset="UTF-8">
   <title>Editor de Código</title>
   <link rel="stylesheet" href="stylesheets/styles.css">
-  <link rel="icon" href="icons/html.png" type="image/png" id="language-icon">
+  <link id="icon-link" rel="icon" href="icons/vscw.png" type="image/png" size="16x16">
+  <script src="scripts/icons.js" defer></script>
   <script src="scripts/dowloader.js" defer></script>
   <script src="scripts/autocompletar.js" defer></script>
   <script src="scripts/upload.js" defer></script>
-  <scrpit src="scripts/icons.js" defer></script>
 </head>
 <body>
 <div class="editor-wrapper">
   <div class="toolbar">
     <label for="language-select">Selecionar linguagem:</label>
-    <select id="language-select">
+    <select id="language-select" onchange="changeIconAndBackground()">
+      <option value="txt">TXT</option>
       <option value="html">HTML</option>
       <option value="css">CSS</option>
       <option value="js">JavaScript</option>
     </select>
-    <input type="file" id="file-upload" accept=".html,.css,.js">
-    <button id="upload-button">Upload</button>
+    <input type="file" id="file-upload" accept=".html,.css,.js" onchange="handleFileUpload(event)">
+    <label for="file-upload" id="upload-label">Upload</label>
   </div>
   <button id="download-button">Baixar</button>
   <div id="editor" contenteditable="true"></div>

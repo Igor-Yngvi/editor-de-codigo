@@ -1,17 +1,33 @@
-    function changeIcon() {
+    function changeIconAndBackground() {
       var languageSelect = document.getElementById("language-select");
-      var icon = document.getElementById("language-icon");
+      var iconLink = document.getElementById("icon-link");
       var selectedLanguage = languageSelect.value;
       
-      // Defina os caminhos dos ícones correspondentes a cada linguagem
-      var iconPaths = {
-        html: "icons/html.png",
-        css: "icons/css.png",
-        js: "icons/js.png"
+      // Defina os caminhos dos ícones e cores predominantes correspondentes a cada linguagem
+      var languageData = {
+        txt: {
+          iconPath: "icons/vscw.png",
+          color: "#f2f2f2"
+        },
+        html: {
+          iconPath: "icons/html.png",
+          color: "#e96228"
+        },
+        css: {
+          iconPath: "icons/css.png",
+          color: "#2862e9"
+        },
+        js: {
+          iconPath: "icons/js.png",
+          color: "#efd81d"
+        }
       };
       
-      // Atualize o ícone com base na linguagem selecionada
-      if (selectedLanguage in iconPaths) {
-        icon.href = iconPaths[selectedLanguage];
+      // Atualize o atributo href do link do ícone com base na linguagem selecionada
+      // e atualize o fundo da página com o gradiente correspondente à cor predominante
+      if (selectedLanguage in languageData) {
+        var data = languageData[selectedLanguage];
+        iconLink.href = data.iconPath;
+        document.body.style.background = data.color;
       }
     }
