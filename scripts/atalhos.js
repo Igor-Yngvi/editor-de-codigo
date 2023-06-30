@@ -1,8 +1,27 @@
 // Mapeamento das linguagens aos templates de código
 var codeTemplates = {
-  html: "<!-- Template de código HTML -->",
-  css: "/* Template de código CSS */",
-  js: "// Template de código JavaScript"
+  html: `<!-- Template de código HTML -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Título da Página</title>
+</head>
+<body>
+  <h1>Minha Página</h1>
+</body>
+</html>`,
+  css: `/* Template de código CSS */
+body {
+  background-color: #f1f1f1;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: blue;
+}`,
+  js: `// Template de código JavaScript
+console.log("Olá, mundo!");`
 };
 
 document.addEventListener("keydown", function(event) {
@@ -22,3 +41,4 @@ document.addEventListener("keydown", function(event) {
     editor.textContent = templateCode;
   }
 });
+
