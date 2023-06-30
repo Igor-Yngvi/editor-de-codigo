@@ -1,27 +1,32 @@
 // Mapeamento das linguagens aos templates de código
 var codeTemplates = {
-  html: `<!-- Template de código HTML -->
-<!DOCTYPE html>
+  txt: `
+Editor de Código Web,
+V 0.6, 
+Ultima atualização: 30/06/2023,
+Criador: Igor Henrique da Silva`,
+  html: `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Título da Página</title>
 </head>
 <body>
-  <h1>Minha Página</h1>
 </body>
 </html>`,
-  css: `/* Template de código CSS */
-body {
-  background-color: #f1f1f1;
-  font-family: Arial, sans-serif;
+  css: `* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  color: blue;
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #f1f1f1;
+  font-family: Arial, sans-serif;
 }`,
-  js: `// Template de código JavaScript
-console.log("Olá, mundo!");`
+  js: `console.log("Olá, mundo!");`
 };
 
 document.addEventListener("keydown", function(event) {
