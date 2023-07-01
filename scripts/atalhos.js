@@ -2,7 +2,7 @@
 var codeTemplates = {
   txt: `
 Editor de Código Web,
-V 0.6, 
+V 0.6.3, 
 Ultima atualização: 30/06/2023,
 Criador: Igor Henrique da Silva`,
   html: `<!DOCTYPE html>
