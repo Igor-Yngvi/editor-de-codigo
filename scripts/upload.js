@@ -20,6 +20,10 @@
         js: {
           iconPath: "icons/js.png",
           color: "#efd81d"
+        },
+        vbs: {
+          iconPath: "icons/vbs.png",
+          color: "#40dfdf"
         }
       };
       

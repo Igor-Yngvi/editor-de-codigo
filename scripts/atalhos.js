@@ -2,7 +2,7 @@
 var codeTemplates = {
   txt: `
 Editor de Código Web,
-V 0.6.3, 
+V 0.6, 
 Ultima atualização: 30/06/2023,
 Criador: Igor Henrique da Silva`,
   html: `<!DOCTYPE html>
@@ -26,7 +26,8 @@ body {
   background-color: #f1f1f1;
   font-family: Arial, sans-serif;
 }`,
-  js: `console.log("Olá, mundo!");`
+  js: `console.log("Olá, mundo!");`,
+  vbs: `MsgBox "Olá, mundo!"`
 };
 
 document.addEventListener("keydown", function(event) {

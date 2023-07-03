@@ -20,14 +20,11 @@
         js: {
           iconPath: "icons/js.png",
           color: "#efd81d"
-        },
-        vbs: {
-          iconPath: "icons/vbs.png",
-          color: "#40dfdf"
         }
       };
       
-      //Mudando o editor
+      // Atualize o atributo href do link do ícone com base na linguagem selecionada
+      // e atualize o fundo da página com o gradiente correspondente à cor predominante
       if (selectedLanguage in languageData) {
         var data = languageData[selectedLanguage];
         iconLink.href = data.iconPath;
