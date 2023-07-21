@@ -66,9 +66,19 @@ function getCurrentWord(text) {
     wordStart--;
   }
 
+    // Verificar se há espaço antes da palavra atual
+  if (wordStart > 0 && /\s/.test(editorContent[wordStart - 1])) {
+    wordStart++;
+  }
+
   let wordEnd = end;
   while (wordEnd < editorContent.length && !/\s/.test(editorContent[wordEnd])) {
     wordEnd++;
+  }
+
+    // Verificar se há espaço após a palavra atual (ao pressionar "Enter" ou "Espaço")
+  if (wordEnd < editorContent.length && /\s/.test(editorContent[wordEnd])) {
+    wordEnd--;
   }
 
   // Retornar a palavra atual
@@ -81,21 +91,19 @@ function insertSuggestion(suggestion) {
   const selection = window.getSelection();
   const range = selection.getRangeAt(0);
 
-  // Remover a palavra em andamento antes de inserir a sugestão
+  // Verificar a palavra atual antes de inserir a sugestão
   const currentWord = getCurrentWord(editor.textContent);
+
+  // Substituir a palavra atual pela sugestão
   const wordStart = editor.textContent.lastIndexOf(currentWord);
   const wordEnd = wordStart + currentWord.length;
-  editor.textContent = editor.textContent.slice(0, wordStart) + editor.textContent.slice(wordEnd);
+  const newContent = editor.textContent.slice(0, wordStart) + suggestion + editor.textContent.slice(wordEnd);
 
-  // Remover o texto selecionado
-  range.deleteContents();
-
-  // Inserir a sugestão no lugar do texto removido
-  const suggestionNode = document.createTextNode(suggestion);
-  range.insertNode(suggestionNode);
+  // Inserir o novo conteúdo no editor
+  editor.textContent = newContent;
 
   // Colocar o cursor no final da sugestão
-  range.setStartAfter(suggestionNode);
+  range.setStart(editor.firstChild, wordStart + suggestion.length);
   range.collapse(true);
   selection.removeAllRanges();
   selection.addRange(range);
@@ -109,7 +117,9 @@ function insertSuggestion(suggestion) {
 }
 
 // Evento de digitação no editor
-document.getElementById("editor").addEventListener("input", handleInput);
+const editor = document.getElementById("editor");
+editor.addEventListener("input", handleInput);
+editor.addEventListener("keydown", handleKeyDown);
 
 // Função de tratamento do evento de digitação
 function handleInput() {
@@ -117,3 +127,15 @@ function handleInput() {
   setTimeout(showSuggestions, 50);
 }
 
+// Função para tratar o evento de teclado
+function handleKeyDown(event) {
+  const suggestionsContainer = document.getElementById("suggestions-container");
+  if (event.key === "Tab" && suggestionsContainer.childElementCount > 0) {
+    // Prevenir o comportamento padrão do "Tab"
+    event.preventDefault();
+    // Obter a primeira sugestão
+    const firstSuggestion = suggestionsContainer.firstChild.textContent;
+    // Inserir a primeira sugestão no editor
+    insertSuggestion(firstSuggestion);
+  }
+}
